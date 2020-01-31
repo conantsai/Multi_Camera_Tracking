@@ -14,7 +14,7 @@ from siamese_model import *
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 flags.DEFINE_integer('batch_size', 64, 'Batch size.')
-flags.DEFINE_integer('train_iter', 500, 'Total training iter')
+flags.DEFINE_integer('train_iter', 1000, 'Total training iter')
 flags.DEFINE_integer('step', 50, 'Save after ... iteration')
 flags.DEFINE_string('model', 'mnist', 'model to run')
 
@@ -54,8 +54,8 @@ if __name__ == "__main__":
     tf.reset_default_graph()
 	
     #setup dataset
-    left_datapath = "iLIDS-VID_train\i-LIDS-VID\sequences2\cam1"
-    right_datapath = "iLIDS-VID_train\i-LIDS-VID\sequences2\cam2"
+    left_datapath = "iLIDS-VID_train\i-LIDS-VID\sequences4\cam1"
+    right_datapath = "iLIDS-VID_train\i-LIDS-VID\sequences4\cam2"
     left_images, left_labels = get_data(left_datapath)
     right_images, right_labels = get_data(right_datapath)
 

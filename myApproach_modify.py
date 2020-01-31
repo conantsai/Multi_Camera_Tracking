@@ -101,7 +101,7 @@ def constructConflict(nodes):
     return conflict
 
 def getEcost(graph, nodes, nodes_datetime):
-    np.set_printoptions(threshold=np.nan)
+    # np.set_printoptions(threshold=np.nan)
     nodeCount = len(nodes)
     ecost = np.zeros((nodeCount, nodeCount))
     interval_info = np.zeros((nodeCount))
@@ -328,7 +328,7 @@ if __name__ == '__main__':
                 nodeUse = nodeTemp
                 edgeUse = edgeTemp
 
-    real = {0: 6, 1: 7, 2: 8, 3: 9, 4: 10, 5: 11}
+    real = {0: 10, 1: 11, 2: 12, 3: 13, 4: 14, 5: 15, 6: 16, 7: 17, 8: 18, 9: 19}
     
     ## with Unary cost & Pairwise cost result
     result = dict()
