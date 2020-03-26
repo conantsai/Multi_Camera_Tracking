@@ -80,6 +80,7 @@ def constructGraph(nodes, group1, group2):
                                                 and (isGroup(group1, nodes[i][0], nodes[j][0]) or isGroup(group2, nodes[i][1], nodes[j][1])):
                 graph[i][j] = 1
                 graph[j][i] = 1
+
     return graph
 
 def isGroup(group, tracklet1, tracklet2):
@@ -106,7 +107,6 @@ def getEcost(graph, nodes, nodes_datetime):
     ecost = np.zeros((nodeCount, nodeCount))
     interval_info = np.zeros((nodeCount))
 
-
     for i in range(nodeCount):
         for j in range(nodeCount):
             if graph[i][j] == 1:
@@ -129,7 +129,7 @@ def getEcost(graph, nodes, nodes_datetime):
                 ans = norm.pdf(x = interval, loc=interval_mean, scale=interval_std)
                 ecost[i][j] = ans
             else:
-                ecost[i][j] == 0
+                ecost[i][j] = 0
     return ecost
 
 def getImage(filepath, colorTrans=False):
@@ -246,10 +246,14 @@ if __name__ == '__main__':
     vcost, vlist = getVcost(nodes)
 
     # print(nodes)
+    # print(nodes_datetime)
+    # print(group1)
+    # print(group2)
     # print(vlist)
     # print(graph)
     # print(conflict)
     # print(vcost, vlist)
+
 
     # vcost = np.array([0.28168089, 0.31964477, 0.32662189, 0.35603418, 0.36034267, 0.36462012,
     #                   0.38390326, 0.38678372, 0.39294957, 0.39694841, 0.40760776, 0.40787301,
@@ -286,14 +290,16 @@ if __name__ == '__main__':
         for index2, content2 in enumerate(vlist):
             if label[index2] == 1 and index2 != index1:
                 if graph[content1[0]][content2[0]] == 1:
-                    print(nodes[content2[0]])
+                    # print(nodes[content2[0]])
                     nodeTemp.append([nodes[content2[0]], vcost[index2]])
                     edgeTemp.append([nodes[content1[0]], nodes[content2[0]], ecost[content1[0]][content2[0]]])
+                    print(content1[0], content2[0])
+                    print(nodeTemp)
+                    print(edgeTemp)
                     ## Is there any other nodes that conflicts with new add node
                     for index3, content3 in enumerate(vlist):
                         if conflict[content2[0]][content3[0]] == 1:
                             label[index3] = 0
-
     
         labels = len(nodeTemp)
         if labels > maxLabel:
